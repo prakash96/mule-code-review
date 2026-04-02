@@ -1,0 +1,362 @@
+{
+	"rules": [
+
+
+		{
+			"id": "MULE001",
+			"category": "ERROR_HANDLING",
+			"severity": "CRITICAL",
+			"description": "Flow must contain error handler",
+			"xpath": "//mule:flow[not(mule:error-handler)]"
+		},
+
+
+		{
+			"id": "MULE002",
+			"category": "ERROR_HANDLING",
+			"severity": "HIGH",
+			"description": "Avoid on-error-continue in flows",
+			"xpath": "//mule:on-error-continue"
+		},
+
+
+		{
+			"id": "MULE003",
+			"category": "LOGGING",
+			"severity": "HIGH",
+			"description": "Flow must contain logger",
+			"xpath": "//mule:flow[not(.//mule:logger)]"
+		},
+
+
+		{
+			"id": "MULE004",
+			"category": "LOGGING",
+			"severity": "WARN",
+			"description": "Logger message should not be empty",
+			"xpath": "//mule:logger[not(@message)]"
+		},
+
+
+		{
+			"id": "MULE005",
+			"category": "RETRY",
+			"severity": "HIGH",
+			"description": "Until successful must define retries",
+			"xpath": "//mule:until-successful[not(@maxRetries)]"
+		},
+
+
+		{
+			"id": "MULE006",
+			"category": "RETRY",
+			"severity": "WARN",
+			"description": "Until successful should define delay",
+			"xpath": "//mule:until-successful[not(@millisBetweenRetries)]"
+		},
+
+
+		{
+			"id": "MULE007",
+			"category": "HTTP",
+			"severity": "HIGH",
+			"description": "HTTP listener must define path",
+			"xpath": "//http:listener[not(@path)]"
+		},
+
+
+		{
+			"id": "MULE008",
+			"category": "HTTP",
+			"severity": "HIGH",
+			"description": "HTTP request must define URL",
+			"xpath": "//http:request[not(@url)]"
+		},
+
+
+		{
+			"id": "MULE009",
+			"category": "HTTP",
+			"severity": "WARN",
+			"description": "HTTP request should define method",
+			"xpath": "//http:request[not(@method)]"
+		},
+
+
+		{
+			"id": "MULE010",
+			"category": "DATABASE",
+			"severity": "HIGH",
+			"description": "DB select missing SQL query",
+			"xpath": "//db:select[not(db:sql)]"
+		},
+
+
+		{
+			"id": "MULE011",
+			"category": "DATABASE",
+			"severity": "HIGH",
+			"description": "DB insert missing SQL query",
+			"xpath": "//db:insert[not(db:sql)]"
+		},
+
+
+		{
+			"id": "MULE012",
+			"category": "DATABASE",
+			"severity": "HIGH",
+			"description": "DB update missing SQL query",
+			"xpath": "//db:update[not(db:sql)]"
+		},
+
+
+		{
+			"id": "MULE013",
+			"category": "DATABASE",
+			"severity": "HIGH",
+			"description": "DB delete missing SQL query",
+			"xpath": "//db:delete[not(db:sql)]"
+		},
+
+
+		{
+			"id": "MULE014",
+			"category": "SECURITY",
+			"severity": "CRITICAL",
+			"description": "Hardcoded password detected",
+			"xpath": "//*[@password and not(contains(@password,'${'))]"
+		},
+
+
+		{
+			"id": "MULE015",
+			"category": "SECURITY",
+			"severity": "CRITICAL",
+			"description": "Hardcoded username detected",
+			"xpath": "//*[@username and not(contains(@username,'${'))]"
+		},
+
+
+		{
+			"id": "MULE016",
+			"category": "SECURITY",
+			"severity": "CRITICAL",
+			"description": "Hardcoded client secret detected",
+			"xpath": "//*[contains(@clientSecret,'')]"
+		},
+
+
+		{
+			"id": "MULE017",
+			"category": "PERFORMANCE",
+			"severity": "WARN",
+			"description": "Transform inside foreach may impact performance",
+			"xpath": "//mule:foreach//ee:transform"
+		},
+
+
+		{
+			"id": "MULE018",
+			"category": "PERFORMANCE",
+			"severity": "WARN",
+			"description": "Avoid nested foreach loops",
+			"xpath": "//mule:foreach//mule:foreach"
+		},
+
+
+		{
+			"id": "MULE019",
+			"category": "PERFORMANCE",
+			"severity": "WARN",
+			"description": "Large payload transformation inside loop",
+			"xpath": "//mule:foreach//ee:transform"
+		},
+
+
+		{
+			"id": "MULE020",
+			"category": "MESSAGING",
+			"severity": "HIGH",
+			"description": "AMQP publish must define exchange",
+			"xpath": "//amqp:publish[not(@exchangeName)]"
+		},
+
+
+		{
+			"id": "MULE021",
+			"category": "MESSAGING",
+			"severity": "HIGH",
+			"description": "JMS publish must define destination",
+			"xpath": "//jms:publish[not(@destination)]"
+		},
+
+
+		{
+			"id": "MULE022",
+			"category": "MESSAGING",
+			"severity": "HIGH",
+			"description": "VM publish must define queue",
+			"xpath": "//vm:publish[not(@queueName)]"
+		},
+
+
+		{
+			"id": "MULE023",
+			"category": "API",
+			"severity": "WARN",
+			"description": "HTTP listener should define allowed methods",
+			"xpath": "//http:listener[not(@allowedMethods)]"
+		},
+
+
+		{
+			"id": "MULE024",
+			"category": "API",
+			"severity": "WARN",
+			"description": "API should return HTTP status",
+			"xpath": "//http:response[not(@statusCode)]"
+		},
+
+
+		{
+			"id": "MULE025",
+			"category": "LOGGING",
+			"severity": "WARN",
+			"description": "Logger should include correlationId",
+			"xpath": "//mule:logger[not(contains(@message,'correlationId'))]"
+		},
+
+
+		{
+			"id": "MULE026",
+			"category": "CONFIG",
+			"severity": "WARN",
+			"description": "Avoid connector configuration inside flow",
+			"xpath": "//mule:flow//*[contains(name(),'config')]"
+		},
+
+
+		{
+			"id": "MULE027",
+			"category": "CONFIG",
+			"severity": "WARN",
+			"description": "HTTP listener should reference global config",
+			"xpath": "//http:listener[not(@config-ref)]"
+		},
+
+
+		{
+			"id": "MULE028",
+			"category": "CONFIG",
+			"severity": "WARN",
+			"description": "DB connector should reference global config",
+			"xpath": "//db:select[not(@config-ref)]"
+		},
+
+
+		{
+			"id": "MULE029",
+			"category": "CONFIG",
+			"severity": "WARN",
+			"description": "AMQP connector should reference global config",
+			"xpath": "//amqp:publish[not(@config-ref)]"
+		},
+
+
+		{
+			"id": "MULE030",
+			"category": "PERFORMANCE",
+			"severity": "WARN",
+			"description": "Avoid heavy transform inside choice",
+			"xpath": "//mule:choice//ee:transform"
+		},
+
+
+		{
+			"id": "MULE031",
+			"category": "ERROR_HANDLING",
+			"severity": "WARN",
+			"description": "Try scope should contain error handler",
+			"xpath": "//mule:try[not(mule:error-handler)]"
+		},
+
+
+		{
+			"id": "MULE032",
+			"category": "FLOW",
+			"severity": "WARN",
+			"description": "Flow name should follow naming convention",
+			"xpath": "//mule:flow[not(@name)]"
+		},
+
+
+		{
+			"id": "MULE033",
+			"category": "FLOW",
+			"severity": "WARN",
+			"description": "Subflow should have name",
+			"xpath": "//mule:sub-flow[not(@name)]"
+		},
+
+
+		{
+			"id": "MULE034",
+			"category": "API",
+			"severity": "WARN",
+			"description": "HTTP listener should define response timeout",
+			"xpath": "//http:listener[not(@responseTimeout)]"
+		},
+
+
+		{
+			"id": "MULE035",
+			"category": "RETRY",
+			"severity": "WARN",
+			"description": "Retry should define delay",
+			"xpath": "//mule:until-successful[not(@millisBetweenRetries)]"
+		},
+
+
+		{
+			"id": "MULE036",
+			"category": "SECURITY",
+			"severity": "CRITICAL",
+			"description": "Hardcoded token detected",
+			"xpath": "//*[contains(@token,'')]"
+		},
+
+
+		{
+			"id": "MULE037",
+			"category": "SECURITY",
+			"severity": "CRITICAL",
+			"description": "Hardcoded API key detected",
+			"xpath": "//*[contains(@apiKey,'')]"
+		},
+
+
+		{
+			"id": "MULE038",
+			"category": "PERFORMANCE",
+			"severity": "WARN",
+			"description": "Large transformations inside choice",
+			"xpath": "//mule:choice//ee:transform"
+		},
+
+
+		{
+			"id": "MULE039",
+			"category": "LOGGING",
+			"severity": "WARN",
+			"description": "Logger should define log level",
+			"xpath": "//mule:logger[not(@level)]"
+		},
+		{
+			"id": "MULE040",
+			"category": "HTTP",
+			"severity": "HIGH",
+			"description": "HTTP listener path must come from properties",
+			"xpath": "//http:listener[@path and not(contains(@path,'${'))]"
+		}
+	]
+}
